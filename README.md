@@ -57,7 +57,8 @@ games-etl/
 │       └── etl_pipeline.yml
 │
 ├── data/
-│   └── games.csv
+│   ├── games.csv
+│   └── games_cleaned.csv
 │
 ├── src/
 │   ├── ingest.py
@@ -105,6 +106,8 @@ Características:
 * Full Load hacia PostgreSQL
 
 El dataset completo es leído, procesado y cargado en cada ejecución del pipeline.
+
+Además, el pipeline genera automáticamente un archivo `games_cleaned.csv` con los datos limpios y transformados.
 
 ---
 
@@ -192,6 +195,33 @@ Verifica:
 
 ---
 
+# 💾 Exportación de datos limpios
+
+Después de la limpieza y transformación, el pipeline genera automáticamente:
+
+```txt
+data/games_cleaned.csv
+```
+
+Este archivo contiene:
+
+* Datos limpios
+* Tipos corregidos
+* Fechas transformadas
+* Valores nulos tratados
+* Nuevas columnas derivadas
+* Métricas de popularidad
+
+El CSV limpio puede utilizarse para:
+
+* Power BI
+* Machine Learning
+* Dashboards
+* Análisis exploratorio
+* Auditoría de datos
+
+---
+
 # ☁️ Base de datos
 
 El pipeline utiliza PostgreSQL en Neon.
@@ -203,6 +233,25 @@ El pipeline utiliza PostgreSQL en Neon.
 * Compatible con Python
 * Integración sencilla con GitHub Actions
 * Ideal para proyectos ETL y análisis de datos
+
+---
+
+# 🗑️ Gestión automática de tablas en Neon
+
+Antes de cargar los nuevos datos, el pipeline ejecuta:
+
+```sql
+DROP TABLE IF EXISTS games
+```
+
+Esto permite:
+
+* Evitar duplicados
+* Reemplazar esquemas antiguos
+* Mantener consistencia de datos
+* Garantizar cargas limpias
+
+Posteriormente la tabla es recreada automáticamente usando Pandas y SQLAlchemy.
 
 ---
 
@@ -235,6 +284,26 @@ Ejemplo:
 ```env
 DATABASE_URL=postgresql://usuario:password@host/database?sslmode=require
 ```
+
+---
+
+# 🧩 Extensión recomendada para VS Code
+
+Se recomienda instalar la extensión:
+
+```txt
+CSV
+```
+
+Disponible en el Marketplace de Visual Studio Code.
+
+Esta extensión permite:
+
+* Visualizar CSV como tablas
+* Filtrar columnas
+* Ordenar datos
+* Mejorar la lectura del dataset
+* Analizar fácilmente `games.csv` y `games_cleaned.csv`
 
 ---
 

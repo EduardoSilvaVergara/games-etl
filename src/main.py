@@ -50,6 +50,19 @@ def main():
         return
 
     # =========================
+    # EXPORTAR CSV LIMPIO
+    # =========================
+
+    df_transformed.to_csv(
+        "data/games_cleaned.csv",
+        index=False
+    )
+
+    print(
+        "CSV limpio generado en data/games_cleaned.csv"
+    )
+
+    # =========================
     # LOAD
     # =========================
 
