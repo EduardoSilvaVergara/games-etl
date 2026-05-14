@@ -66,8 +66,8 @@ htmlcov/
 dist/
 build/
 
-# CSV 
-*.csv
+data/
+csv
 
 # CSV de datos
 data/*.csv
