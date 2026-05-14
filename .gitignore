@@ -66,10 +66,12 @@ htmlcov/
 dist/
 build/
 
-data/
-csv
 
-.csv
+# CSV
+*.csv
+
+# CSV de datos
+data/*.csv
 
 # =========================
 # BASES DE DATOS LOCALES
