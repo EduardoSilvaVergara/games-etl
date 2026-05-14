@@ -88,6 +88,7 @@ games-etl/
 | Git            | Control de versiones                    |
 | GitHub         | Repositorio remoto                      |
 | GitHub Actions | Automatización CI/CD                    |
+| Docker         | Contenerización del pipeline            |
 
 ---
 
@@ -252,6 +253,40 @@ Esto permite:
 * Garantizar cargas limpias
 
 Posteriormente la tabla es recreada automáticamente usando Pandas y SQLAlchemy.
+
+---
+
+# 🐳 Docker
+
+El proyecto incluye un `Dockerfile` para ejecutar el pipeline en contenedores.
+
+## Construir imagen Docker
+
+```bash
+docker build -t games-etl .
+```
+
+## Ejecutar contenedor
+
+```bash
+docker run --env-file .env games-etl
+```
+
+## ¿Qué hace Docker en este proyecto?
+
+* Crea un entorno aislado
+* Instala automáticamente las dependencias
+* Ejecuta el pipeline ETL
+* Facilita despliegues reproducibles
+* Evita problemas de compatibilidad entre sistemas
+
+## Beneficios
+
+* Portabilidad
+* Reproducibilidad
+* Fácil despliegue
+* Estandarización del entorno
+* Integración con CI/CD
 
 ---
 
